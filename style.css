@@ -1,0 +1,36 @@
+body {
+    padding:20%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family:sans-serif;
+}
+
+body * {
+    margin:5px;
+}
+
+input {
+    padding: 5px;
+}
+
+#options {
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: left;
+}
+
+#options * {
+    align-items: center;
+}
+
+button {
+    width:50%
+}
+
+h3 {
+    margin:2px
+}
+

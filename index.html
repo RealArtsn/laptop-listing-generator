@@ -1,53 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Listing Generator</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <script src="script.js" defer></script>
-        <div id="options">
-            <div>
-                <input type="checkbox" id="battery" name="battery">
-                <label for="battery"> Battery </label>
-            </div>
-            <div>
-                <input type="checkbox" id="adapter" name="adapter">
-                <label for="adapter"> Power Adapter </label>
-            </div>
-            <div>
-                <input type="checkbox" id="os" name="os">
-                <label for="os"> Windows 11 Pro </label>
-            </div>
-            <div>
-                <select name="Storage" id="StorageSelect">
-                    <option value="none">No Storage</option>
-                    <option value="128">128GB</option>
-                    <option value="256">256GB</option>
-                    <option value="512">512GB</option>
-                    <option value="1024">1TB</option>
-                </select>
-                <select name="Storage Type" id="StorageType">
-                    <option value="SSD">SSD</option>
-                    <option value="HDD">HDD</option>
-                </select>
-            </div>
-            <div>
-                <text>RAM</text>
-                <select id="RAM">
-                    <option value="8">8GB</option>
-                    <option value="16">16GB</option>
-                    <option value="32">32GB</option>
-                </select>
-            </div>
-            <div>
-                <h3>Condition</h3>
-                <input type="text" id="condition">
-            </div>
-            <button id='GenerateButton'>Generate</button>
+
+<head>
+    <title>Listing Generator</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="script.js" defer></script>
+    <div id="options">
+        <div class="specBox">
+            <h3>MODEL</h3>
+            <input id="modelName">
         </div>
-        <h5 id="TitleOut"></h5>
-        <h5 id="ConditionOut"></h5>
-    </body>
+        <div class="specBox">
+            <h3>CPU</h3>
+            <input id="cpuModel">
+        </div>
+        <div>
+            <select name="Storage" id="StorageSelect">
+                <option value="none">No Storage</option>
+                <option value="128GB">128GB</option>
+                <option value="256GB">256GB</option>
+                <option value="512GB">512GB</option>
+                <option value="1TB">1TB</option>
+            </select>
+            <select name="Storage Type" id="StorageType">
+                <option value="SSD">SSD</option>
+                <option value="HDD">HDD</option>
+            </select>
+        </div>
+        <div>
+            <text>RAM</text>
+            <select id="RAM">
+                <option value="8GB">8GB</option>
+                <option value="16GB">16GB</option>
+                <option value="32GB">32GB</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" id="battery" name="battery">
+            <label for="battery"> Battery </label>
+            <input type="input" id="batteryPercent" name="batteryPercent">
+            <text>%</text>
+        </div>
+        <div>
+            <input type="checkbox" id="adapter" name="adapter">
+            <label for="adapter"> Power Adapter </label>
+        </div>
+        <div>
+            <input type="checkbox" id="os" name="os">
+            <label for="os"> Windows 11 Pro </label>
+        </div>
+        <div>
+            <h3>Condition</h3>
+            <input type="text" id="condition">
+        </div>
+        <button id='GenerateButton'>Generate</button>
+    </div>
+    <h5 id="TitleOut"></h5>
+    <h5 id="ConditionOut"></h5>
+</body>
+
 </html>

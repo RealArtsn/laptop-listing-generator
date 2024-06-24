@@ -1,5 +1,5 @@
 function init() {
-    document.querySelector('#copyTitle').addEventListener('click', copyTitle);
+    document.querySelectorAll('.copyButton').forEach(e => {e.addEventListener('click', copyField)});
     document.querySelectorAll('input').forEach(e => {e.addEventListener('input', generateText)});
     document.querySelectorAll('select').forEach(e => {e.addEventListener('input', generateText)});
 
@@ -72,6 +72,7 @@ function generateText() {
     }
     // reset background after copy
     titleOut.style.backgroundColor = '';
+    conditionOut.style.backgroundColor = '';
     // Generate condition
     conditionArr[5] = joinMissingCondition(conditionMissing);
     conditionOut.textContent = conditionArr.join(' ');
@@ -106,10 +107,19 @@ function joinMissingCondition(conditionMissing) {
     
 }
 
-function copyTitle() {
-    let titleOut = document.querySelector('#TitleOut');
-    navigator.clipboard.writeText(titleOut.textContent);
-    titleOut.style.backgroundColor = 'LightGreen';
+function copyField() {
+    let copyElement = null;
+    // console.log(this.id);
+    if (this.id == 'copyTitle') {
+        console.log('Copy the title')
+        copyElement = document.querySelector('#TitleOut');
+    }
+    if (this.id == 'copyCondition') {
+        console.log('Copy the condition')
+        copyElement = document.querySelector('#ConditionOut');
+    }
+    navigator.clipboard.writeText(copyElement.textContent);
+    copyElement.style.backgroundColor = 'LightGreen';
 }
 
 init()

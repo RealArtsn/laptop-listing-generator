@@ -15,7 +15,8 @@ input {
     padding: 5px;
 }
 
-#options {
+#options,
+#outputs {
     display:flex;
     flex-direction: column;
     width: 50%;

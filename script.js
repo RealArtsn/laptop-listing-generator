@@ -17,13 +17,25 @@ function generateText() {
     let os = '';
     let missing = [];
 
-    let battery = document.querySelector('#batteryPercent').value + '% BATT';
+    let battery = document.querySelector('#batteryPercent').value + '%';
 
+
+    conditionArr = [
+        'F3/C3 This unit has been POST tested for power, display, and the ability to boot to BIOS.',
+        document.querySelector('#condition').value, // additional condition
+        '', // battery
+        'Please refer to photos for wear and damages as the unit shows wear in multiple spots.',
+        '', // included / not included
+        'Comes W/30 Day Warranty.'
+    ];
+
+    conditionMissing = []
 
     // Generate and display title
     titleOut.textContent = model + ' | ' + cpu + ' | ' + memory;
     if (document.querySelector('#StorageSelect').value == 'none') {
-        missing.push('STORAGE')
+        missing.push(document.querySelector('#StorageType').value);
+        conditionMissing.push('Storage');
     }
     else {
         titleOut.textContent += ' | ' + storage;
@@ -34,14 +46,19 @@ function generateText() {
     }
     else {
         missing.push('OS')
+        conditionMissing.push('Operating System');
     }
     if (document.querySelector('#battery').checked) {
-        titleOut.textContent += ' | ' + battery;
+        titleOut.textContent += ' | ' + battery + ' BATT';
+        conditionArr[2] = `This unit has at least ${battery} available battery capacity at the time of listing.`
     }
     else {
         missing.push('BATTERY');
+        conditionMissing.push('Battery');
     }
-    
+    if (!document.querySelector('#adapter').checked) {
+        conditionMissing.push('Power Adapter')
+    }
     if (missing.length > 0) {
         titleOut.textContent += ' | NO ' + missing.join('/');
     }
@@ -56,7 +73,37 @@ function generateText() {
     // reset background after copy
     titleOut.style.backgroundColor = '';
     // Generate condition
-    conditionOut.textContent = ''
+    conditionArr[5] = joinMissingCondition(conditionMissing);
+    conditionOut.textContent = conditionArr.join(' ');
+}
+
+function joinMissingCondition(conditionMissing) {
+    if (conditionMissing.length == 0) {
+        return '';
+    }
+    
+    let thisOrThese = 'this';
+    let plural = ['a','s']
+    if (conditionMissing.length > 1) {
+        thisOrThese = 'these';
+        plural[0] = ''
+    }
+    else {
+        if (conditionMissing[0] == 'Storage') {
+            plural[0] = '';
+        }
+        plural[1] = '';
+    }
+    let conditionMissingList = ''
+    if (conditionMissing.length > 1) {
+        conditionMissingList = `${conditionMissing.slice(0,-1).join(', ')} or ${conditionMissing[conditionMissing.length - 1]}`
+    }
+    else {
+        conditionMissingList = conditionMissing.join(', ')
+    }
+    let missingString = `This unit will not include ${plural[0]} ${conditionMissingList}; ${thisOrThese} item${plural[1]} will be needed for full functionality of the laptop.`
+    return missingString
+    
 }
 
 function copyTitle() {

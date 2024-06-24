@@ -1,8 +1,8 @@
 function init() {
+    document.querySelector('#clearButton').addEventListener('click', clearFields);
     document.querySelectorAll('.copyButton').forEach(e => {e.addEventListener('click', copyField)});
     document.querySelectorAll('input').forEach(e => {e.addEventListener('input', generateText)});
     document.querySelectorAll('select').forEach(e => {e.addEventListener('input', generateText)});
-
 }
 
 function generateText() {
@@ -120,6 +120,11 @@ function copyField() {
     }
     navigator.clipboard.writeText(copyElement.textContent);
     copyElement.style.backgroundColor = 'LightGreen';
+}
+
+function clearFields() {
+    document.querySelectorAll('input').forEach(e => {e.value = ''});
+    generateText();
 }
 
 init()

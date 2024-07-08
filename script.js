@@ -1,4 +1,9 @@
 function init() {
+    clearFields()
+    addEventListeners()
+}
+
+function addEventListeners() {
     document.querySelector('#clearButton').addEventListener('click', clearFields);
     document.querySelectorAll('.copyButton').forEach(e => {e.addEventListener('click', copyField)});
     document.querySelectorAll('input').forEach(e => {e.addEventListener('input', generateText)});

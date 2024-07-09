@@ -131,7 +131,7 @@ function clearFields() {
     document.querySelectorAll('input').forEach(e => {e.value = ''; e.checked = false});
     document.querySelectorAll('h5').forEach(e => {e.textContent = ''});
     document.querySelector('#StorageSelect').value = 'none';
-    document.querySelector('#RAM').value = '8GB';
+    document.querySelector('#RAM').value = '';
 }
 
 init()

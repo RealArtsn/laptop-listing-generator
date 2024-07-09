@@ -54,8 +54,13 @@ function generateText() {
         conditionMissing.push('Operating System');
     }
     if (document.querySelector('#battery').checked) {
-        titleOut.textContent += ' | ' + battery + ' BATT';
-        conditionArr[2] = `This unit has at least ${battery} available battery capacity at the time of listing.`
+        if (document.querySelector('#batteryPercent').value != '') {
+            titleOut.textContent += ' | ' + battery + ' BATT';
+            conditionArr[2] = `This unit has at least ${battery} available battery capacity at the time of listing.`
+        }
+        else {
+            conditionArr[2] = 'This unit has a functioning battery.'
+        }
     }
     else {
         missing.push('BATTERY');

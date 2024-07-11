@@ -6,8 +6,9 @@ function init() {
 function addEventListeners() {
     document.querySelector('#clearButton').addEventListener('click', clearFields);
     document.querySelectorAll('.copyButton').forEach(e => {e.addEventListener('click', copyField)});
-    document.querySelectorAll('input').forEach(e => {e.addEventListener('input', generateText)});
+    document.querySelectorAll('input').forEach(e => {e.addEventListener('input', (e) => {generateText(), generatePayload()})});
     document.querySelectorAll('select').forEach(e => {e.addEventListener('input', generateText)});
+    document.querySelector('#copyPayload').addEventListener('click', copyPayload);
 }
 
 function generateText() {
@@ -137,6 +138,33 @@ function clearFields() {
     document.querySelectorAll('h5').forEach(e => {e.textContent = ''});
     document.querySelector('#StorageSelect').value = 'none';
     document.querySelector('#RAM').value = '';
+}
+
+function copyPayload() {
+    navigator.clipboard.writeText(JSON.stringify(generatePayload()));
+}
+
+function generatePayload() {
+    let payload = {};
+    payload['RAM Size'] = document.querySelector('#RAM').value.slice(0, -2) + ' GB';
+    let storageTypeAutofill = ''
+    switch (document.querySelector('#StorageType').value) {
+        case 'SSD':
+            storageTypeAutofill = 'SSD (Solid State Drive)';
+            break;
+        case 'HDD':
+            storageTypeAutofill = 'HDD (Hard Disk Drive)';
+            break;
+    }
+    payload['Storage Type'] = storageTypeAutofill;
+    payload['SSD Capacity'] = document.querySelector('#StorageSelect').value.slice(0, -2) + ' GB';
+    if (document.querySelector('#os').checked) {
+        payload['Operating System'] = 'Windows 11 Pro';
+    }
+    else {
+        payload['Operating System'] = 'Not Included';
+    }
+    return payload;
 }
 
 init()

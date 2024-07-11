@@ -84,7 +84,7 @@ function generateText() {
     titleOut.style.backgroundColor = '';
     conditionOut.style.backgroundColor = '';
     // Generate condition
-    conditionArr[5] = joinMissingCondition(conditionMissing);
+    conditionArr[4] = joinMissingCondition(conditionMissing);
     conditionOut.textContent = conditionArr.join(' ');
 }
 

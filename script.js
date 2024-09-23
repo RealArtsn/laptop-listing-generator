@@ -143,6 +143,9 @@ function clearFields() {
     document.querySelectorAll('h5').forEach(e => {e.textContent = ''});
     document.querySelector('#StorageSelect').value = 'none';
     document.querySelector('#RAM').value = '';
+    // Fill empty output fields
+    document.querySelector('#TitleOut').textContent = '-';
+    document.querySelector('#ConditionOut').textContent = '-';
 }
 
 function copyPayload() {

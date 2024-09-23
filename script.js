@@ -60,7 +60,7 @@ function generateText() {
         conditionMissing.push('Operating System');
     }
     if (document.querySelector('#battery').checked) {
-        if (document.querySelector('#batteryPercent').value != '') {
+        if (document.querySelector('#batteryPercent').value != '' && document.querySelector('#includeBattery').checked) {
             titleOut.textContent += ' | ' + battery + ' BATT';
             conditionArr[2] = `This unit has at least ${battery} available battery capacity at the time of listing.`
         }
@@ -146,6 +146,7 @@ function clearFields() {
     // Fill empty output fields
     document.querySelector('#TitleOut').textContent = '-';
     document.querySelector('#ConditionOut').textContent = '-';
+    document.querySelector('#includeBattery').checked = true;
 }
 
 function copyPayload() {

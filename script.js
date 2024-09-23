@@ -18,6 +18,7 @@ function generateText() {
     // get specs from input
     let model = document.querySelector('#modelName').value;
     let cpu = document.querySelector('#cpuModel').value;
+    let gpu = document.querySelector('#gpuModel').value;
     let memory = document.querySelector('#RAM').value + ' RAM';
     let storage = document.querySelector('#StorageSelect').value + ' ' + document.querySelector('#StorageType').value;
     let os = '';
@@ -38,7 +39,11 @@ function generateText() {
     conditionMissing = []
 
     // Generate and display title
-    titleOut.textContent = model + ' | ' + cpu + ' | ' + memory;
+    titleOut.textContent = model + ' | ' + cpu;
+    if (document.querySelector('#hasGPU').checked) {
+        titleOut.textContent += ' | ' + gpu;
+    }
+    titleOut.textContent += ' | ' + memory;
     if (document.querySelector('#StorageSelect').value == 'none') {
         missing.push(document.querySelector('#StorageType').value);
         conditionMissing.push('Storage');

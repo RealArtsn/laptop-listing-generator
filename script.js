@@ -60,9 +60,12 @@ function generateText() {
         conditionMissing.push('Operating System');
     }
     if (document.querySelector('#battery').checked) {
-        if (document.querySelector('#batteryPercent').value != '' && document.querySelector('#includeBattery').checked) {
-            titleOut.textContent += ' | ' + battery + ' BATT';
-            conditionArr[2] = `This unit has at least ${battery} available battery capacity at the time of listing.`
+        if (document.querySelector('#batteryPercent').value != '') {
+            conditionArr[2] = `This unit reports at least ${battery} available battery capacity at the time of listing. \
+            Battery reports are an estimate of battery health and may vary over time.`
+            if (document.querySelector('#includeBattery').checked) {
+                titleOut.textContent += ' | ' + battery + ' BATT';
+            }
         }
         else {
             conditionArr[2] = 'This unit has a functioning battery.'
